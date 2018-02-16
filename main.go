@@ -96,6 +96,11 @@ func main() {
 	alienDirection := 1 // direction where alien is heading
 	score := 0          // number of points scored in the game so far
 
+	defer func() {
+		termbox.Close()
+		fmt.Println("\nGAME OVER!\nFinal score:", score)
+	}()
+
 	// poll for keyboard events in another goroutine
 	events := make(chan termbox.Event, 1000)
 	go func() {
@@ -243,8 +248,6 @@ start:
 		fmt.Println("\n\nSCORE:", score)
 		loop++
 	}
-	termbox.Close()
-	fmt.Println("\nGAME OVER!\nFinal score:", score)
 }
 
 func dropBomb(alien Sprite) {
