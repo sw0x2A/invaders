@@ -288,11 +288,11 @@ func getImage(filePath string) image.Image {
 	imgFile, err := os.Open(filePath)
 	defer imgFile.Close()
 	if err != nil {
-		fmt.Println("Cannot read file:", err)
+		panic(fmt.Sprintln("Cannot read file:", err))
 	}
 	img, _, err := image.Decode(imgFile)
 	if err != nil {
-		fmt.Println("Cannot decode file:", err)
+		panic(fmt.Sprintln("Cannot decode file:", err))
 	}
 	return img
 }
